@@ -72,19 +72,24 @@ def manage_file():
 
 
 # Function to download a file from a url and store it in the mongo database
-#TODO: Don't create duplicates
 def download_url(url):
+    app.logger.info("Getting data from url: " + url)
     response = get(url)
-    print(response.encoding)
-    print(response.content.decode())
-    text_file = TextFile(filename=url.rsplit('/', 1)[-1], source=url, data=response.content.decode())
-    text_file.save()
+    text_file = TextFile.objects(filename=url.rsplit('/', 1)[-1], source=url, data=response.content.decode()).first()
+    app.logger.info("Adding url data to mongodb")
+    if text_file is None:
+        app.logger.info("Couldn't find an existing mongodb entry; adding a new one")
+        text_file = TextFile(filename=url.rsplit('/', 1)[-1], source=url, data=response.content.decode())
+        text_file.save()
+    else:
+        app.logger.info("Found an existing mongodb entry; updating it")
+        text_file.update(filename=url.rsplit('/', 1)[-1], source=url, data=response.content.decode())
+    
 
-#TODO: Write a function for reading from the database
 def read_file_from_mongo(url):
     text_file = TextFile.objects(source=url).first()
     return text_file.data
 
 # This let's us use "python3 app.py" in order to start the service
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
