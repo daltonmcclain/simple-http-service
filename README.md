@@ -27,7 +27,7 @@ The service is built into a Docker image with Ubuntu 20.04 as a base. In additio
 ./docker-run.sh
 
 ## Ansible Playbooks
-This repository also includes Ansible playbooks for building and running the service from a remote node. In my testing, I built and ran the services in a Raspberry Pi 4 running Ubuntu Server. 
+This repository also includes Ansible playbooks for building and running the service from a remote node. In my testing, I built and ran the services in a Raspberry Pi 4 running Ubuntu Server. Some of these playbooks have some redundant steps if your build node and server node is the same. I wanted to run this on a Raspberry Pi, which meant I needed to build the docker image with the arm architecture. To do so, I made the Raspberry Pi both the build node and the server node. 
 
 #### docker-setup.ylm
 Installs docker.io and python3-docker, then sets up the docker group and the "dockernet" network that the services run in.
