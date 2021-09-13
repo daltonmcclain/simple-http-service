@@ -1,6 +1,7 @@
 #/bin/bash
-SCRIPT_HOME=$(dirname "${BASH_SOURCE[0]}")
+# Script to build and run the simple-http-service locally
 
+SCRIPT_HOME=$(dirname "${BASH_SOURCE[0]}")
 cd $SCRIPT_HOME
 
 ./docker-build.sh
