@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Setup the app to use mongodb
 app.config['MONGODB_SETTINGS'] = {
     'db' : 'simple-http-service_database',
-    'host' : 'localhost',
+    'host' : 'docker-mongo-server',
     'port' : 27017
 }
 db = MongoEngine(app)
@@ -47,7 +47,7 @@ def manage_file():
     # Check which action we are getting
     if action == "download":
         # Try to download the sample file and save it in a mongo database
-        return download_url("https://bad-url")
+        return download_url(sample_url)
 
     elif action == "read":
         # Read the file from the mongo database
