@@ -6,6 +6,7 @@ import mongoengine as me
 import pymongo.errors
 from requests import get
 import requests
+from waitress import serve
 
 # Create our Flask application, called "app"
 app = Flask(__name__)
@@ -105,4 +106,5 @@ def read_file_from_mongo(url):
 # This let's us use "python3 app.py" in order to start the service
 # Can add "debug=true" if we want the server to output info logging and auto-update during development
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    #app.run(host='0.0.0.0', port=5000, debug=True)
+    serve(app, host='0.0.0.0', port=5000)
