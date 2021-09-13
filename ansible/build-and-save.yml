@@ -8,11 +8,13 @@
       build:
         path: ../
       state: present
+
   - name: save simple-http-service docker image
     docker_image:
       name: simple-http-service:v1.0
       archive_path: ./simple-http-service_v1_0.tar
       state: present
+      
   - name: fetch simple-http-service image archive
     fetch:
       src: ./simple-http-service_v1_0.tar

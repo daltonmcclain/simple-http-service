@@ -1,0 +1,16 @@
+---
+- hosts: docker_hosts
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: install docker.io and python3-docker
+    apt:
+      pkg:
+      - docker.io
+      - python3-docker
+
+  - name: setup docker group
+    shell: |
+      groupadd docker
+      usermod -aG docker ansible-automation
+      newgrp docker
