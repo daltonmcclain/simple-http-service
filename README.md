@@ -26,4 +26,22 @@ The service is built into a Docker image with Ubuntu 20.04 as a base. In additio
 #### Run an HTTP-Service Docker Container
 ./docker-run.sh
 
+## Ansible Playbooks
+This repository also includes Ansible playbooks for building and running the service from a remote node. In my testing, I built and ran the services in a Raspberry Pi 4 running Ubuntu Server. 
 
+#### docker-setup.ylm
+Installs docker.io and python3-docker, then sets up the docker group and the "dockernet" network that the services run in.
+
+#### build-and-save.yml
+1. Copies the app, Dockerfile, and requirements.txt to the `build_host` defined in your ansible inventory.
+2. Builds the `simple-http-service` image.
+3. Saves the `simple-http-service` image and downloads it to the control node. 
+
+#### load.yml
+Copies the archive of the `simple-http-service` from the control node to the managed node(s), then loads the archive into the docker daemon. 
+
+#### run-mongo.yml
+Pulls the `mongo:4.2` docker image (I had trouble with the latest version running in Docker), then runs it in the `dockernet` network. 
+
+#### run-simple-http-service.yml
+Runs the `simple-http-service` in the `dockernet` network. 
