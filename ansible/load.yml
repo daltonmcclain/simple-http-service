@@ -5,10 +5,10 @@
   - name: copy image archive to host
     copy: 
       src: ./simple-http-service_v1_0.tar
-      dest: simple-http-service_v1_0.tar
+      dest: simple-http-service/simple-http-service_v1_0.tar
 
   - name: load container from archive
     docker_image:
       name: simple-http-service:v1.0
-      load_path: simple-http-service_v1_0.tar
+      load_path: simple-http-service/simple-http-service_v1_0.tar
       state: present

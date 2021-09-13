@@ -9,8 +9,14 @@
       - docker.io
       - python3-docker
 
-  - name: setup docker group
-    shell: |
-      groupadd docker
-      usermod -aG docker ansible-automation
-      newgrp docker
+  - name: add docker group
+    group: 
+      name: docker
+      state: present
+
+  - name: add ansible-automation to docker group
+    shell: usermod -aG docker ansible-automation
+  
+  - name: setup dockernet
+    docker_network:
+      name: dockernet

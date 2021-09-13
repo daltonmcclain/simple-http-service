@@ -1,0 +1,14 @@
+---
+- hosts: docker_hosts
+  gather_facts: no
+  tasks: 
+  - name: run the simple-http-service docker image
+    docker_container:
+      name: simple-http-service
+      image: simple-http-service:v1.0
+      networks:
+      - name: "dockernet"
+      ports: 
+      - "5000:5000"
+      detach: true
+      state: started
