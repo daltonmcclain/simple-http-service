@@ -92,7 +92,9 @@ Stops currently running `mongo` container and `simple-http-service` container.
 
 > The containers running in the raspberry pi.
 
-> Interacting with the endpoint using [Postman](https://www.postman.com/)
+![raspberrypi-docker-status](https://user-images.githubusercontent.com/8879159/133370311-53db5256-0a93-4039-b0d6-a4e82515714b.png)
+
+#### Interacting with the endpoint using [Postman](https://www.postman.com/)
 
 > Invalid HTTP Method (service only accepts GET)
 
