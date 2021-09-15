@@ -1,0 +1,3 @@
+---
+# User for remote hosts
+user: "ansible-automation"

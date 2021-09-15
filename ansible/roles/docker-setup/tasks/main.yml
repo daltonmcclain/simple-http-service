@@ -11,8 +11,8 @@
     state: present
   become: yes
 
-- name: add ansible-automation to docker group
-  shell: usermod -aG docker ansible-automation
+- name: add {{ user }} to docker group
+  shell: usermod -aG docker {{ user }}
   become: yes
 
 - name: setup dockernet
