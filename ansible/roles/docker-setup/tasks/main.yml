@@ -1,0 +1,20 @@
+- name: install docker.io and python3-docker
+  apt:
+    pkg:
+    - docker.io
+    - python3-docker
+  become: yes
+
+- name: add docker group
+  group: 
+    name: docker
+    state: present
+  become: yes
+
+- name: add ansible-automation to docker group
+  shell: usermod -aG docker ansible-automation
+  become: yes
+
+- name: setup dockernet
+  docker_network:
+    name: dockernet

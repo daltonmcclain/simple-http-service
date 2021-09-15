@@ -1,0 +1,7 @@
+---
+# Build the service
+- hosts: build_host
+  gather_facts: False
+
+  roles:
+  - deploy

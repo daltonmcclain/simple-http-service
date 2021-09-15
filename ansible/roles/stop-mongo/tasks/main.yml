@@ -1,0 +1,5 @@
+---
+- name: stop the mongo docker container
+  docker_container:
+    name: mongo
+    state: stopped

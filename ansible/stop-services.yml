@@ -1,0 +1,8 @@
+---
+# Run MongoDB and simple-http-service docker containers
+- hosts: docker_hosts
+  gather_facts: False
+
+  roles:
+  - stop-service
+  - stop-mongo

@@ -1,22 +1,8 @@
 ---
+# Setup docker on the remote host
 - hosts: docker_hosts
-  gather_facts: no
+  gather_facts: False
   become: yes
-  tasks:
-  - name: install docker.io and python3-docker
-    apt:
-      pkg:
-      - docker.io
-      - python3-docker
 
-  - name: add docker group
-    group: 
-      name: docker
-      state: present
-
-  - name: add ansible-automation to docker group
-    shell: usermod -aG docker ansible-automation
-  
-  - name: setup dockernet
-    docker_network:
-      name: dockernet
+  roles:
+  - docker-setup

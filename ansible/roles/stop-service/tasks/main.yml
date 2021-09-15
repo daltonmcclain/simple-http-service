@@ -1,0 +1,5 @@
+---
+- name: stop the simple-http-service docker container
+  docker_container:
+    name: simple-http-service
+    state: stopped

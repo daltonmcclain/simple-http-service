@@ -4,4 +4,4 @@
 
 docker pull mongo:4.2
 
-docker run -d --network dockernet --hostname="docker-mongo-server" -p 27017:27017 mongo
+docker run --name mongo -d --network dockernet --hostname="docker-mongo-server" -p 27017:27017 mongo

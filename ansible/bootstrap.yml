@@ -1,0 +1,20 @@
+---
+# Build the service and save the image
+# Used when the build_host is different from the docker_host
+- hosts: build_host
+  gather_facts: False
+
+  roles:
+  - docker-setup
+  - build
+  - fetch
+
+
+- hosts: docker_hosts
+  gather_facts: False
+  
+  roles:
+  - docker-setup
+  - deploy
+  - run-mongo
+  - run-service
