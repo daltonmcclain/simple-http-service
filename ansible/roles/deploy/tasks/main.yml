@@ -1,4 +1,9 @@
 ---
+- name: check for the image archive
+  local_action: "stat path={{ playbook_dir }}/simple-http-service_v1_0.tar"
+  register: path_exists
+  failed_when: path_exists.stat.exists == false
+
 - name: copy image archive to host
   copy: 
     src: "{{ playbook_dir }}/simple-http-service_v1_0.tar"
